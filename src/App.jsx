@@ -1,14 +1,25 @@
-import './App.css'
-import GoogleAuth from './components/GoogleAuth'
-import { GoogleOAuthProvider } from '@react-oauth/google'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css"
+import { BrowserRouter } from "react-router-dom";
+import { AuthWrapper } from "./auth/AuthWrapper";
+import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
 
   return (
-    <>
-    <GoogleOAuthProvider clientId="898936791621-01qkppvr5vu4k9ae4p0mooqpnslmo1p2.apps.googleusercontent.com">
-      <GoogleAuth></GoogleAuth></GoogleOAuthProvider>
-    </>
-  )
+    <div className='App'>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AuthWrapper />
+        </BrowserRouter>
+        <ToastContainer role='alert' />
+      </QueryClientProvider>
+    </div>
+  );
 }
 
-export default App
+export default App;
